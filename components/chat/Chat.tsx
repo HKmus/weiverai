@@ -33,6 +33,7 @@ function Chat() {
       userId: userDetails.id,
       messages: msg,
     });
+    setUserInput("");
     router.push("workspace/" + workSpaceId);
   };
 
@@ -55,6 +56,7 @@ function Chat() {
           <textarea
             className="outline-none bg-transparent w-full h-32 max-h-56 resize-none"
             placeholder={en.INPUT_PLACEHOLDER}
+            value={userInput}
             onChange={(e) => setUserInput(e.target.value)}
           />
           {userInput.length > 0 && (

@@ -55,6 +55,27 @@ export async function updateMessages({
   }
 }
 
+export async function updateFiles({
+  workSpaceId,
+  files,
+}: {
+  workSpaceId: string;
+  files: any;
+}) {
+  try {
+    const { data } = await supabase
+      .from("workspace")
+      .update({ fileData: files })
+      .eq("id", workSpaceId)
+      .select()
+      .single();
+
+    return data;
+  } catch (error) {
+    console.log("Error", error);
+  }
+}
+
 // export async function addMessage(userId, role, message) {
 //   const workspace = await getWorkspace(userId);
 //   if (!workspace) return null;

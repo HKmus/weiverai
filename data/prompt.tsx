@@ -10,59 +10,19 @@ export default {
 `,
 
   CODE_GEN_PROMPT: dedent`
-Generate a Project in React. Create multiple components, organizing them in separate folders with filenames using the .js extension, if needed. The output should use Tailwind CSS for styling, 
-without any third-party dependencies or libraries, except for icons from the lucide-react library, which should only be used when necessary. Available icons include: Heart, Shield, Clock, Users, Play, Home, Search, Menu, User, Settings, Mail, Bell, Calendar, Star, Upload, Download, Trash, Edit, Plus, Minus, Check, X, and ArrowRight. For example, you can import an icon as import { Heart } from "lucide-react" and use it in JSX as <Heart className="" />.
-also you can use date-fns for date format and react-chartjs-2 chart, graph library
-
-Return the response in JSON format with the following schema:
-{
-  "projectTitle": "",
-  "explanation": "",
-  "files": {
-    "/App.js": {
-      "code": ""
-    },
-    ...
-  },
-  "generatedFiles": []
-}
-
-Here’s the reformatted and improved version of your prompt:
-
-Generate a programming code structure for a React project using Vite. Create multiple components, organizing them in separate folders with filenames using the .js extension, if needed. The output should use Tailwind CSS for styling, without any third-party dependencies or libraries, except for icons from the lucide-react library, which should only be used when necessary. Available icons include: Heart, Shield, Clock, Users, Play, Home, Search, Menu, User, Settings, Mail, Bell, Calendar, Star, Upload, Download, Trash, Edit, Plus, Minus, Check, X, and ArrowRight. For example, you can import an icon as import { Heart } from "lucide-react" and use it in JSX as <Heart className="" />.
+Generate a React project structure using Vite. This project should demonstrate a [Specific Project Goal, e.g., simple dashboard, e-commerce product listing, etc.]. The project will be initialized with the following files (modify and build upon these): \n\n{\n    \"/public/index.html\": {\n      code: "<!DOCTYPE html>\\n<html lang=\"en\">\\n  <head>\\n    <meta charset=\"UTF-8\">\\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\\n    <title>Document</title>\\n    <script src=\"https://cdn.tailwindcss.com\"></script>\\n  </head>\\n  <body>\\n    <div id=\"root\"></div>\\n  </body>\\n</html>",\n    },\n\n    \"/App.css\": {\n      code: "\\n@tailwind base;\\n@tailwind components;\\n@tailwind utilities;",\n    },\n    \"/App.js\": {\n      code: "\\nexport default function App() {\\n  return <h1>Hello world</h1>\\n}",\n    },\n    \"/index.js\": {\n      code: "\\nimport React, { StrictMode } from \"react\";\\nimport { createRoot } from \"react-dom/client\";\\nimport \"./styles.css\";\\n\nimport App from \"./App\";\n\nconst root = createRoot(document.getElementById(\"root\"));\nroot.render(\n  <StrictMode>\\n    <App />\\n  </StrictMode>\\n);",\n    },\n    \"/package.json\": {\n      code: "\\n{\\n  \"dependencies\": {\\n    \"react\": \"^19.0.0\",\\n    \"react-dom\": \"^19.0.0\",\\n    \"react-scripts\": \"^5.0.0\",\\n    \"postcss\": \"^8\",\\n    \"tailwindcss\": \"^3.4.1\",\\n    \"autoprefixer\": \"^10.0.0\",\\n    \"uuid4\": \"^2.0.3\",\\n    \"tailwind-merge\": \"^2.4.0\",\\n    \"tailwindcss-animate\": \"^1.0.7\",\\n    \"lucide-react\": \"^0.469.0\",\\n    \"react-router-dom\": \"^7.1.1\",\\n    \"date-fns\": \"^4.1.0\",\\n    \"react-chartjs-2\": \"^5.3.0\",\\n    \"chart.js\": \"^4.4.7\"\\n  },\\n  \"main\": \"/index.js\",\\n  \"devDependencies\": {}\\n}",\n    },\n    \"/tailwind.config.js\": {\n      code: "\\n            /** @type {import('tailwindcss').Config} */\\nmodule.exports = {\\n  content: [\\n    \"./src/**/*.{js,jsx,ts,tsx}\",\\n  ],\\n  theme: {\\n    extend: {},\\n  },\\n  plugins: [],\\n}",\n    },\n    \"/postcss.config.js\": {\n      code: "/** @type {import('postcss-load-config').Config} */\\nconst config = {\\n  plugins: {\\n    tailwindcss: {},\\n  },\\n};\\n\nexport default config;\\n",\n    },\n    \"/styles.css\": {\n      code: "\\nbody {\\n  font-family: sans-serif;\\n  -webkit-font-smoothing: auto;\\n  -moz-font-smoothing: auto;\\n  -moz-osx-font-smoothing: grayscale;\\n  font-smoothing: auto;\\n  text-rendering: optimizeLegibility;\\n  font-smooth: always;\\n  -webkit-tap-highlight-color: transparent;\\n  -webkit-touch-callout: none;\\n}\\n\nh1 {\\n  font-size: 1.5rem;\\n}",\n    },\n  },\n\nCreate multiple components, organizing them into separate folders with .js extension filenames. Utilize Tailwind CSS for styling, avoiding third-party UI libraries unless explicitly necessary. Employ icons from the lucide-react library judiciously; available icons are: Heart, Shield, Clock, Users, Play, Home, Search, Menu, User, Settings, Mail, Bell, Calendar, Star, Upload, Download, Trash, Edit, Plus, Minus, Check, X, and ArrowRight (import as "import { Heart } from 'lucide-react';" and use as "<Heart className='' />"). If date formatting or charting is needed, use "date-fns" and "react-chartjs-2" respectively. Only use 'firebase','@google/generative-ai' only when it required. The project MUST include a functional "index.js" file that imports and renders the "App.js" component within the root element. All components must be written using .js extension. Do not use a "src" folder. If the application contains more than 3 components (including App.js), create a separate "components" folder to house all components *except* "App.js" and "index.js". Before including an import statement in any component, ensure the imported component/module exists within the project structure. If it does not, create the necessary file and component. Use placeholder images from https://archive.org/download/placeholder-image/placeholder-image.jpg when images are required. Employ emoji for enhanced user experience. Aim for visually appealing and production-ready designs, including full-featured webpages, using valid Unsplash URLs for stock photos. Avoid downloading images, only linking via "<img>" tags. Do not install additional UI or icon packages unless explicitly requested. The icons in the navbar should be the lucide react icons when appropiate.
 
 Return the response in JSON format with the following schema:
 
-json
-Copy code
-{
-  "projectTitle": "",
-  "explanation": "",
-  "files": {
-    "/App.js": {
-      "code": ""
-    },
-    ...
-  },
-  "generatedFiles": []
-}
-Ensure the files field contains all created files, and the generatedFiles field lists all the filenames. Each file's code should be included in the code field, following this example:
-files:{
-  "/App.js": {
-    "code": "import React from 'react';\nimport './styles.css';\nexport default function App() {\n  return (\n    <div className='p-4 bg-gray-100 text-center'>\n      <h1 className='text-2xl font-bold text-blue-500'>Hello, Tailwind CSS with Sandpack!</h1>\n      <p className='mt-2 text-gray-700'>This is a live code editor.</p>\n    </div>\n  );\n}"
-  }
-}
-  Additionally, include an explanation of the project's structure, purpose, and functionality in the explanation field. Make the response concise and clear in one paragraph.
-  - When asked then only use this package to import, here are some packages available to import and use (date-fns,react-chartjs-2,"firebase","@google/generative-ai" ) only when it required
-  
-  - For placeholder images, please use a https://archive.org/download/placeholder-image/placeholder-image.jpg
-  -Add Emoji icons whenever needed to give good user experinence
-  - all designs I ask you to make, have them be beautiful, not cookie cutter. Make webpages that are fully featured and worthy for production.
+{\n  \"projectTitle\": \"\",\n  \"explanation\": \"\",\n  \"files\": {\n    \"/index.js\": {\n      \"code\": \"\"\n    },\n    \"/App.js\": {\n      \"code\": \"\"\n    },\n    ...
+  },\n  \"generatedFiles\": []\n}
 
-- By default, this template supports JSX syntax with Tailwind CSS classes, React hooks, and Lucide React for icons. Do not install other packages for UI themes, icons, etc unless absolutely necessary or I request them.
+Ensure:
 
-- Use icons from lucide-react for logos.
-
-- Use stock photos from unsplash where appropriate, only valid URLs you know exist. Do not download the images, only link to them in image tags.
-   `,
+*   The "files" field includes ALL created files with their code, **including the modified initial files listed above.**
+*   The "generatedFiles" field lists all filenames (e.g., "[\"/index.js\", \"/App.js\", \"/components/ComponentName.js\", ... ]").
+*   The "index.js" file correctly imports and renders the "App" component.
+*   If a "components" folder is created, all relevant components are located within it and correctly imported in "App.js".
+*   **Crucially, all imports are verified to exist. If a component/module is imported but does not exist, it should be created.**
+*   The "explanation" concisely describes the project's structure, purpose, and functionality, as well as the modifications made to the initial files.`,
 };
