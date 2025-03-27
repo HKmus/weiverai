@@ -1,11 +1,13 @@
-import React from "react";
 import { signOut } from "../(auth)/actions";
+import { Button } from "@/components/ui/button";
+import Chat from "@/components/chat/Chat";
+
 
 export default function Dashboard() {
   return (
     <>
-      <div>Dashboard</div>
-      <button onClick={signOut}>signout</button>
+      <Button onClick={signOut}>Sign Out</Button>
+      <Chat />
     </>
   );
 }

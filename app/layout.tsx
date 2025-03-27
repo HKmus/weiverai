@@ -3,6 +3,8 @@ import { Lato } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import { ThemeProvider } from "@/components/theme-provider";
+import { MessagesProvider } from "@/context/MessagesContext";
+import { UserDetailsProvider } from "@/context/UserDetailsContext";
 
 const latoFont = Lato({
   variable: "--font-lato",
@@ -21,16 +23,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <body className={`${latoFont.variable} antialiased`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
+        <UserDetailsProvider>
+          <MessagesProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="light"
+              enableSystem
+              disableTransitionOnChange
+            >
+              {children}
+            </ThemeProvider>
+          </MessagesProvider>
+        </UserDetailsProvider>
       </body>
     </html>
   );
