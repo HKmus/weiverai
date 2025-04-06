@@ -65,7 +65,7 @@ export async function updateFiles({
   try {
     const { data } = await supabase
       .from("workspace")
-      .update({ filedata: files })
+      .update({ files_data: files })
       .eq("id", workSpaceId)
       .select()
       .single();
