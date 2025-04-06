@@ -8,13 +8,7 @@ import { Provider } from "@supabase/supabase-js";
 // Generalized OAuth sign-in function
 const signInWith = (provider: Provider) => async () => {
   const supabase = await createClient();
-  const getBaseUrl = () => {
-    if (process.env.SITE_URL) return process.env.SITE_URL;
-    if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
-    return "http://localhost:3001";
-  };
-
-  const siteUrl = getBaseUrl();
+  const siteUrl = "https://weiverai.vercel.app";
   const auth_callback_url = `${siteUrl}/auth/callback`;
 
   const { data, error } = await supabase.auth.signInWithOAuth({
