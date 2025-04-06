@@ -8,7 +8,7 @@ import { Provider } from "@supabase/supabase-js";
 // Generalized OAuth sign-in function
 const signInWith = (provider: Provider) => async () => {
   const supabase = await createClient();
-  const siteUrl = process.env.SITE_URL || "http://localhost:3001"; // Fallback for safety
+  const siteUrl = process.env.SITE_URL; // Fallback for safety
   const auth_callback_url = `${siteUrl}/auth/callback`;
 
   const { data, error } = await supabase.auth.signInWithOAuth({
