@@ -32,7 +32,7 @@ export async function updateSession(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
   // Define protected routes
-  const protectedRoutes = ["/dashboard", "/workspace"];
+  const protectedRoutes = ["/dashboard", "/workspace", "/pricing"];
   const isProtectedRoute = protectedRoutes.some((route) =>
     pathname.startsWith(route)
   );

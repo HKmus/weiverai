@@ -65,7 +65,7 @@ export async function updateFiles({
   try {
     const { data } = await supabase
       .from("workspace")
-      .update({ fileData: files })
+      .update({ filedata: files })
       .eq("id", workSpaceId)
       .select()
       .single();
@@ -76,36 +76,38 @@ export async function updateFiles({
   }
 }
 
-// export async function addMessage(userId, role, message) {
-//   const workspace = await getWorkspace(userId);
-//   if (!workspace) return null;
+export async function getAllWorkspaces({ userId }: { userId: string }) {
+  try {
+    const { data } = await supabase
+      .from("workspace")
+      .select("id, messages, modified_at")
+      .eq("user_id", userId);
 
-//   const newMessages = [...workspace.messages, { role, message }];
+    return data;
+  } catch (error) {
+    console.log("Error", error);
+  }
+}
 
-//   const { data, error } = await supabase
-//     .from("workspace")
-//     .update({ messages: newMessages })
-//     .eq("user_id", userId)
-//     .select()
-//     .single();
+export async function deleteWorkspace({
+  workSpaceId,
+}: {
+  workSpaceId: string;
+}) {
+  try {
+    const { error } = await supabase
+      .from("workspace")
+      .delete()
+      .eq("id", workSpaceId);
 
-//   if (error) {
-//     throw error;
-//   }
-//   return data;
-// }
+    if (error) {
+      console.error("Error deleting workspace:", error.message);
+      return { success: false, error: error.message };
+    }
 
-// export async function clearWorkspace(userId: string) {
-//
-//   const { data, error } = await supabase
-//     .from("workspace")
-//     .update({ messages: [] })
-//     .eq("user_id", userId)
-//     .select()
-//     .single();
-
-//   if (error) {
-//     throw error;
-//   }
-//   return data;
-// }
+    return { success: true };
+  } catch (err) {
+    console.error("Unexpected error:", err);
+    return { success: false, error: "An unexpected error occurred" };
+  }
+}

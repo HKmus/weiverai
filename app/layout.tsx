@@ -5,6 +5,8 @@ import Navbar from "@/components/layout/Navbar";
 import { ThemeProvider } from "@/components/theme-provider";
 import { MessagesProvider } from "@/context/MessagesContext";
 import { UserDetailsProvider } from "@/context/UserDetailsContext";
+import { Toaster } from "@/components/ui/sonner";
+import { AIModelProvider } from "@/context/AIModelContext";
 
 const latoFont = Lato({
   variable: "--font-lato",
@@ -26,16 +28,19 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${latoFont.variable} antialiased`}>
         <UserDetailsProvider>
-          <MessagesProvider>
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="light"
-              enableSystem
-              disableTransitionOnChange
-            >
-              {children}
-            </ThemeProvider>
-          </MessagesProvider>
+          <AIModelProvider>
+            <MessagesProvider>
+              <ThemeProvider
+                attribute="class"
+                defaultTheme="light"
+                enableSystem
+                disableTransitionOnChange
+              >
+                {children}
+                <Toaster richColors />
+              </ThemeProvider>
+            </MessagesProvider>
+          </AIModelProvider>
         </UserDetailsProvider>
       </body>
     </html>

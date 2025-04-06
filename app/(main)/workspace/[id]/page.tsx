@@ -3,8 +3,8 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
-import ChatView from "@/components/chat/ChatView";
-import CodeView from "@/components/chat/CodeView";
+import ChatView from "@/components/workspace/ChatView";
+import CodeView from "@/components/workspace/CodeView";
 
 function Workspace() {
   return (

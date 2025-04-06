@@ -34,3 +34,22 @@ export async function updateTokenCount({
     console.log("Error", error);
   }
 }
+
+export async function upgradeUserSubscription({
+  userId,
+}: {
+  userId: string;
+}) {
+  try {
+    const { data } = await supabase
+      .from("profiles")
+      .update({ plan: "pro" })
+      .eq("id", userId)
+      .select()
+      .single();
+
+    return data;
+  } catch (error) {
+    console.log("Error", error);
+  }
+}
