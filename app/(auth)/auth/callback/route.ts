@@ -4,26 +4,20 @@ import { createClient } from "@/utils/supabase/server";
 export async function GET(request: Request) {
   const url = new URL(request.url);
   const code = url.searchParams.get("code");
-  const next = url.searchParams.get("next") ?? "/";
-  const origin = url.origin;
+  const next = url.searchParams.get("next") ?? "/"; // Default to home page if no next parameter
 
   if (code) {
-    const supabase = await createClient(); // no need for `await` here
+    const supabase = await createClient();
     const { error } = await supabase.auth.exchangeCodeForSession(code);
 
     if (!error) {
-      const forwardedHost = request.headers.get("x-forwarded-host");
-      const isLocal = process.env.NODE_ENV === "development";
-
-      const redirectTo = isLocal
-        ? `${origin}${next}`
-        : forwardedHost
-          ? `https://${forwardedHost}${next}`
-          : `${origin}${next}`;
-
-      return NextResponse.redirect(redirectTo);
+      // Redirect to the deployed site (weiverai.vercel.app) after successful login
+      const baseURL = "https://weiverai.vercel.app"; // Replace with your production URL
+      return NextResponse.redirect(`${baseURL}${next}`);
     }
   }
 
-  return NextResponse.redirect(`${origin}/auth/auth-code-error`);
+  // Redirect to error page if authentication fails
+  const errorURL = "https://weiverai.vercel.app/error"; // Replace with your error page URL
+  return NextResponse.redirect(errorURL);
 }
