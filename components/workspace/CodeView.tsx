@@ -130,7 +130,7 @@ function CodeView() {
   const { messages } = useContext(MessagesContext)!;
   const { modelName } = useContext(AIModelContext)!;
   const { userDetails, setUserDetails } = useContext(UserDetailsContext)!;
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const hasFetched = useRef(false);
   const [isGenerating, setIsGenerating] = useState(false);
   const previewRef = useRef<any>(null);
@@ -318,8 +318,8 @@ function CodeView() {
       </SandpackProvider>
       {loading && (
         <div className="w-full h-full bg-loading opacity-80 absolute top-0 flex justify-center items-center p-2">
-          <Loader2Icon className="animate-spin h-10 w-10 text-black" />
-          <h2 className="text-black">Crafting your code...</h2>
+          <Loader2Icon className="animate-spin h-10 w-10 text-primary" />
+          <h2 className="text-primary">Crafting your code...</h2>
         </div>
       )}
     </div>
