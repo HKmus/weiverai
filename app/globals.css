@@ -11,6 +11,7 @@
   --card-foreground: hsl(222.2 84% 4.9%);
   --chat: hsl(250 28% 87%);
   --tab-bar: hsl(243 57% 76%);
+  --loading: hsl(247 28% 75%);
   --switch: hsl(243 57% 76%);
   --switch-back: hsl(250 28% 87%);
   --main: hsl(226 100% 64%);
@@ -52,6 +53,7 @@
   --main: hsl(233 80% 66%);
   --chat: hsl(249 12% 33%);
   --tab-bar: hsl(249 57% 84%);
+  --loading: hsl(247 18% 55%);
   --switch: hsl(249 31% 49%);
   --switch-back: hsl(222.2 47.4% 11.2%);
   --card-foreground: hsl(210 40% 98%);
@@ -91,6 +93,7 @@
   --color-card: var(--card);
   --color-chat: var(--chat);
   --color-tab-bar: var(--tab-bar);
+  --color-loading: var(--loading);
   --color-switch: var(--switch);
   --color-switch-back: var(--switch-back);
   --color-main: var(--main);

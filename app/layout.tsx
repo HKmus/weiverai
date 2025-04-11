@@ -32,7 +32,7 @@ export default function RootLayout({
             <MessagesProvider>
               <ThemeProvider
                 attribute="class"
-                defaultTheme="light"
+                defaultTheme="dark"
                 enableSystem
                 disableTransitionOnChange
               >

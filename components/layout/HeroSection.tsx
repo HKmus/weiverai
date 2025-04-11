@@ -5,8 +5,8 @@ import { signinWithGoogle } from "@/app/(auth)/actions";
 
 function HeroSection() {
   return (
-    <section className="relative overflow-hidden py-20 md:py-32 bg-gradient-to-b from-background to-accent/30">
-      <div className="container mx-auto relative z-10">
+    <section className="relative overflow-hidden py-20 bg-gradient-to-b from-background to-accent/30">
+      <div className="container mx-auto relative z-10 pb-10">
         <div className="grid gap-8 md:grid-cols-2 items-center">
           {/* Left Side */}
           <div className="flex flex-col gap-6">

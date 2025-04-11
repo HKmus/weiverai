@@ -1,6 +1,7 @@
 "use client";
 import { useContext } from "react";
 import { AIModelContext } from "@/context/AIModelContext";
+import { models } from "@/config/AiModels";
 import {
   Select,
   SelectTrigger,
@@ -22,10 +23,11 @@ const ModelSelect = () => {
       <SelectContent>
         <SelectGroup>
           <SelectLabel>Models</SelectLabel>
-          <SelectItem value="gemini-2.0-flash-lite">
-            Gemini 2.0 Flash Lite
-          </SelectItem>
-          <SelectItem value="gemini-1.5-flash">Gemini 1.5 Flash</SelectItem>
+          {models.map((model, index) => (
+            <SelectItem key={index} value={model.TechnicalName}>
+              {model.DisplayName}
+            </SelectItem>
+          ))}
         </SelectGroup>
       </SelectContent>
     </Select>
