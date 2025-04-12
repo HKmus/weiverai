@@ -6,7 +6,6 @@ import { ArrowRight, ArrowDownCircle, Loader2Icon } from "lucide-react";
 import axios from "axios";
 import { useContext, useEffect, useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
-import prompt from "@/data/prompt";
 import { MessagesContext } from "@/context/MessagesContext";
 import { useParams } from "next/navigation";
 import { getWorkspace, updateMessages } from "@/db/workspace";
@@ -99,10 +98,8 @@ function ChatView() {
   const getAiResponse = async () => {
     try {
       setLoading(true);
-      const PROMPT = JSON.stringify(messages) + prompt.CHAT_PROMPT;
       const result = await axios.post<{ response: string }>("/api/ai-chat", {
-        prompt: PROMPT,
-        model: modelName,
+        messages: JSON.stringify(messages),
       });
 
       const response = result.data.response;

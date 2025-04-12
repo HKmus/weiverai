@@ -1,28 +1,27 @@
-import {
-  models,
-  startGoogleChatSession,
-  startTogetherAiSession,
-} from "@/config/AiModels";
+import { genAiCode } from "@/config/AiModels";
+import prompts from "@/data/prompts";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
-    const { prompt, model } = await req.json();
-    const foundModel = models.find((e) => e.TechnicalName === model);
-    if (foundModel?.Provider === "Google") {
-      const { genAiCode } = await startGoogleChatSession(model);
-      const result = await genAiCode.sendMessage(prompt);
-      const AIresponse = await result.response.text();
+    const { messages } = await req.json();
+    const PROMPT = messages + " " + prompts.CODE_GEN_PROMPT;
+    const result = await genAiCode.sendMessage(PROMPT);
+    const AIresponse = await result.response.text();
 
-      return NextResponse.json({ response: JSON.parse(AIresponse) });
-    } else if (foundModel?.Provider === "Together-ai") {
-      const { codeResult } = await startTogetherAiSession(model, prompt);
-
-      return NextResponse.json({
-        response: JSON.parse(codeResult?.choices?.[0]?.message?.content!),
-      });
+    try {
+      const parsed = JSON.parse(AIresponse);
+      return NextResponse.json({ response: parsed });
+    } catch {
+      return NextResponse.json(
+        { error: "Invalid JSON from Google" },
+        { status: 500 }
+      );
     }
-  } catch (e) {
-    return NextResponse.json({ error: e });
+  } catch (e: any) {
+    return NextResponse.json(
+      { error: e?.message || "Unknown error" },
+      { status: 500 }
+    );
   }
 }

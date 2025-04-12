@@ -14,7 +14,6 @@ import {
   useSandpack,
 } from "@codesandbox/sandpack-react";
 import { useTheme } from "next-themes";
-import prompt from "@/data/prompt";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { useParams } from "next/navigation";
 import { getWorkspace, updateFiles } from "@/db/workspace";
@@ -212,11 +211,10 @@ function CodeView() {
   const generateAiCode = async () => {
     setLoading(true);
     setIsGenerating(true);
-    const PROMPT = JSON.stringify(messages) + " " + prompt.CODE_GEN_PROMPT;
+    
     try {
       const { data } = await axios.post<{ response: any }>("/api/code-gen", {
-        prompt: PROMPT,
-        model: modelName,
+        messages: JSON.stringify(messages),
       });
       if (data.response?.files) {
         setFiles((prevFiles) => ({ ...prevFiles, ...data.response.files }));
