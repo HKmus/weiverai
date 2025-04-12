@@ -8,16 +8,8 @@ export async function POST(req: Request) {
     const PROMPT = messages + " " + prompts.CODE_GEN_PROMPT;
     const result = await genAiCode.sendMessage(PROMPT);
     const AIresponse = await result.response.text();
-
-    try {
-      const parsed = JSON.parse(AIresponse);
-      return NextResponse.json({ response: parsed });
-    } catch {
-      return NextResponse.json(
-        { error: "Invalid JSON from Google" },
-        { status: 500 }
-      );
-    }
+    const parsed = JSON.parse(AIresponse);
+    return NextResponse.json({ response: parsed });
   } catch (e: any) {
     return NextResponse.json(
       { error: e?.message || "Unknown error" },
