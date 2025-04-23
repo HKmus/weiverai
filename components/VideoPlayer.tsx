@@ -29,7 +29,7 @@ export default function VideoPlayer() {
             </Button>
             <iframe
               className="w-full h-[calc(100vw*(9/16))] max-h-[70vh] rounded shadow-lg"
-              src="https://www.youtube.com/embed/StWZPfFuU8s"
+              src="https://www.youtube.com/embed/I3pyUYANmdQ"
               title="Prototype demo"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerPolicy="strict-origin-when-cross-origin"
