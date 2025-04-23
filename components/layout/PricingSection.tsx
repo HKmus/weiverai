@@ -17,7 +17,7 @@ function PricingSection() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 mx-40">
+        <div className="grid md:grid-cols-2 gap-8">
           {[
             {
               name: "Starter",

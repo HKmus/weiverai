@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { Button } from "../ui/button";
 import { signinWithGoogle } from "@/app/(auth)/actions";
+import VideoPlayer from "../VideoPlayer";
 
 function HeroSection() {
   return (
@@ -34,6 +35,7 @@ function HeroSection() {
               >
                 Start Building Free
               </Button>
+              <VideoPlayer />
             </div>
           </div>
 
