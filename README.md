@@ -130,6 +130,7 @@ npm start
 4. **Génération de code** : Demandez à l'IA de créer des structures React
 5. **Gestion des tokens** : Utilisez des tokens pour générer du code
 
+<img width="1891" height="873" alt="Image" src="https://github.com/user-attachments/assets/0b25ed32-620e-496f-b15d-3f63f4cfa977" />
 
 ## Structure des données
 
