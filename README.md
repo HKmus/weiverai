@@ -129,7 +129,7 @@ npm start
 3. **Création de projet** : Utilisez le chat IA pour générer des applications
 4. **Génération de code** : Demandez à l'IA de créer des structures React
 5. **Gestion des tokens** : Utilisez des tokens pour générer du code
-6. **Abonnement Pro** : Upgradez avec des codes promo pour plus de tokens
+
 
 ## Structure des données
 
